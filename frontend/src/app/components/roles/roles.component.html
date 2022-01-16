@@ -1,0 +1,66 @@
+
+<app-home></app-home>
+<div class="form-control-plaintext" >
+  
+<button class="btn btn btn-success" (click)="open(formModal,'Add',role)">New role</button>
+</div>    
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Permissions</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles">
+        <th scope="row">{{role.id}}</th>
+        <td>{{role.name}}</td>
+        <td ><span *ngFor="let permission of role.permissions">
+          <span class="badge bg-primary " >{{permission.name}}</span>&nbsp;</span></td>
+        <td>
+          <button class="btn btn-warning " (click)="open(formModal,'Update',role)" >Edit</button>&nbsp;
+          <button class="btn btn-danger " (click)="deleteData(role.id)">Delete</button></td>
+         
+          </tr>
+    </tbody>
+
+  </table>
+  <ng-template #formModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{action}}&nbsp;Role</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  
+    <div class="modal-body">
+     
+      
+      <input type="text" class="form-control mb-2 mr-sm-2"  [(ngModel)]="role.name"
+       [ngModelOptions]="{standalone:true}"  placeholder="Name" >
+      
+       <ng-multiselect-dropdown
+       [(ngModel)]="role.permissions"
+       [ngModelOptions]="{standalone:true}"
+   [placeholder]="'Select role'"
+   [settings]="dropdownSettings"
+   [data]="permissionsList"
+  
+   (onSelect)="onItemSelect($event)"
+   (onSelectAll)="onSelectAll($event)"
+ >
+
+ </ng-multiselect-dropdown>
+    </div>
+    <div class="modal-footer" >
+      <div *ngIf="action==='Add'">
+      <button (click)="insertData(modal)" class="btn btn-outline-dark" >Submit</button>
+    </div>
+    <div *ngIf="action==='Update'">
+      <button (click)="updateData(modal)" class="btn btn-outline-dark" [routerLink]="['/roles']" >Submit</button>
+    </div>
+  </div>
+  
+  </ng-template>

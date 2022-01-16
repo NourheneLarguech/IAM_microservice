@@ -1,0 +1,32 @@
+<div class="app-home">  
+<nav class="navbar navbar-expand navbar-dark bg-dark ">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0" >
+          <li class="nav-item" >
+            <a class="nav-link active" aria-current="page" href="#" routerLink="/users">Users</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/roles">Roles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" routerLink="/permissions">Permissions</a>
+          </li>
+    </ul>
+    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">{{this.email}}</a>
+               <ul class="dropdown-menu" aria-labelledby="dropdown01">
+              <li><a class="dropdown-item" (click)="logout()">logout</a></li>
+              </ul>
+          </li>
+      </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+    

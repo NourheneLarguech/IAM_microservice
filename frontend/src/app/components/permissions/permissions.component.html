@@ -1,0 +1,50 @@
+
+<app-home></app-home>
+<div class="form-control-plaintext" >
+  
+<button class="btn btn btn-success" (click)="open(formModal,'Add',permission)">New permission</button>
+</div>    
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let permission of permissions">
+        <th scope="row">{{permission.id}}</th>
+        <td>{{permission.name}}</td>
+        <td>
+          <button class="btn btn-warning" (click)="open(formModal,'Update',permission)" >Edit</button>&nbsp;
+          <button class="btn btn-danger btn-sm" (click)="deleteData(permission.id)">Delete</button></td>
+         
+          </tr>
+    </tbody>
+
+  </table>
+  <ng-template #formModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">{{action}}&nbsp;Permission</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  
+    <div class="modal-body">
+     
+      
+      <input type="text" class="form-control mb-2 mr-sm-2"  [(ngModel)]="permission.name"
+       [ngModelOptions]="{standalone:true}"  placeholder="Name" >
+    </div>
+    <div class="modal-footer" >
+      <div *ngIf="action==='Add'">
+      <button (click)="insertData(modal)" class="btn btn-outline-dark" >Submit</button>
+    </div>
+    <div *ngIf="action==='Update'">
+      <button (click)="updateData(modal)" class="btn btn-outline-dark" [routerLink]="['/permissions']" >Submit</button>
+    </div>
+  </div>
+  
+  </ng-template>
